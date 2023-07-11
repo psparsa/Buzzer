@@ -20,53 +20,60 @@ testThree :: Test
 testThree = TestCase $ do
     let result = buzzer 3
     case result of
-        Right _     -> assertFailure wrongTypeMsg
-        Left number -> assertEqual (divTestMsg "3") "Fizz" number
+        Right _  -> assertFailure wrongTypeMsg
+        Left msg -> assertEqual (divTestMsg "3") "Fizz" msg
 
 
 testFive :: Test
 testFive = TestCase $ do
     let result = buzzer 5
     case result of
-        Right _     -> assertFailure wrongTypeMsg
-        Left number -> assertEqual (divTestMsg "5") "Buzz" number
+        Right _  -> assertFailure wrongTypeMsg
+        Left msg -> assertEqual (divTestMsg "5") "Buzz" msg
 
 
 testSeven :: Test
 testSeven = TestCase $ do
     let result = buzzer 7
     case result of
-        Right _     -> assertFailure wrongTypeMsg
-        Left number -> assertEqual (divTestMsg "7") "Bizz" number
+        Right _  -> assertFailure wrongTypeMsg
+        Left msg -> assertEqual (divTestMsg "7") "Bizz" msg
 
 
 testFifteen :: Test
 testFifteen = TestCase $ do
     let result = buzzer 15
     case result of
-        Right _     -> assertFailure wrongTypeMsg
-        Left number -> assertEqual (divTestMsg "3 and 5") "FizzBuzz" number
+        Right _  -> assertFailure wrongTypeMsg
+        Left msg -> assertEqual (divTestMsg "3 and 5") "FizzBuzz" msg
 
 testTwentyOne :: Test
 testTwentyOne = TestCase $ do
     let result = buzzer 21
     case result of
-        Right _     -> assertFailure wrongTypeMsg
-        Left number -> assertEqual (divTestMsg "3 and 7") "FizzBizz" number
+        Right _  -> assertFailure wrongTypeMsg
+        Left msg -> assertEqual (divTestMsg "3 and 7") "FizzBizz" msg
 
 testThirtyFive :: Test
 testThirtyFive = TestCase $ do
     let result = buzzer 35
     case result of
-        Right _     -> assertFailure wrongTypeMsg
-        Left number -> assertEqual (divTestMsg "5 and 7") "BuzzBizz" number
+        Right _  -> assertFailure wrongTypeMsg
+        Left msg -> assertEqual (divTestMsg "5 and 7") "BuzzBizz" msg
 
 testOneHundredFiveThirtyFive :: Test
 testOneHundredFiveThirtyFive = TestCase $ do
     let result = buzzer 105
     case result of
+        Right _  -> assertFailure wrongTypeMsg
+        Left msg -> assertEqual (divTestMsg "3, 5 and 7") "FizzBuzzBizz" msg
+
+testANumberWithDigitThree :: Test
+testANumberWithDigitThree = TestCase $ do
+    let result = buzzer 111333
+    case result of
         Right _     -> assertFailure wrongTypeMsg
-        Left number -> assertEqual (divTestMsg "3, 5 and 7") "FizzBuzzBizz" number
+        Left msg -> assertEqual "Tests a number which has at least a 3" "Fizz" msg
 
 buzzerTests :: Test
 buzzerTests = TestList [
@@ -77,7 +84,8 @@ buzzerTests = TestList [
     testFifteen,
     testTwentyOne,
     testThirtyFive,
-    testOneHundredFiveThirtyFive
+    testOneHundredFiveThirtyFive,
+    testANumberWithDigitThree
     ]
 
 main :: IO ()
