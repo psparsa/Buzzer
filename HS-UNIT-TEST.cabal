@@ -1,0 +1,21 @@
+cabal-version:      2.4
+name:               HS-UNIT-TEST
+version:            0.1.0.0
+author:             PS-PARSA
+
+executable buzzer
+    main-is:          Main.hs
+    other-modules:
+        Buzzer
+    build-depends:    base ^>=4.18.0.0, HUnit
+    hs-source-dirs:   app
+    default-language: Haskell2010
+
+Test-Suite test-buzzer
+    other-modules:
+        Buzzer
+    type:             exitcode-stdio-1.0
+    hs-source-dirs: app
+    main-is:        Tests.hs
+    build-depends:    base ^>=4.18.0.0, HUnit
+    default-language: Haskell2010
