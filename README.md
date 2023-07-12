@@ -1,6 +1,6 @@
 ## 🔬 Run test cases:
 ```bash
-cabal tese
+cabal test
 ```
 
 ## 👨‍🍳 Compile and execute project:
