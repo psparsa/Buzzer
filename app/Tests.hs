@@ -75,6 +75,14 @@ testANumberWithDigitThree = TestCase $ do
         Right _     -> assertFailure wrongTypeMsg
         Left msg -> assertEqual "Tests a number which has at least a 3" "Fizz" msg
 
+testWithABigNumber :: Test
+testWithABigNumber = TestCase $ do
+    let result = buzzer 3333333333333333333
+    case result of
+        Right _  -> assertFailure wrongTypeMsg
+        Left msg -> assertEqual "Tests a big number divisible by 3" "Fizz" msg
+
+
 buzzerTests :: Test
 buzzerTests = TestList [
     testLessThanThree,
@@ -85,7 +93,8 @@ buzzerTests = TestList [
     testTwentyOne,
     testThirtyFive,
     testOneHundredFiveThirtyFive,
-    testANumberWithDigitThree
+    testANumberWithDigitThree,
+    testWithABigNumber
     ]
 
 main :: IO ()
