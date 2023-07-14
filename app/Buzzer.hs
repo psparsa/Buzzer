@@ -1,9 +1,15 @@
 module Buzzer (buzzer) where
+    containsThree :: Int -> Bool
+    containsThree n = elem '3' (show n)
+
     isDivisible :: Integral a => a -> a -> Bool
     isDivisible number divisor = mod number divisor == 0
 
-    containsThree :: Int -> Bool
-    containsThree n = elem '3' (show n)
+    isPrime :: Int -> Bool
+    isPrime n
+        | n < 2 = False
+        | otherwise = null [x | x <- [2..sqrtN], (mod n x) == 0]
+        where sqrtN = floor (sqrt (fromIntegral n))
 
     buzzer :: Int -> Either String Int
     buzzer n
@@ -16,3 +22,5 @@ module Buzzer (buzzer) where
         | isDivisible n 5 = Left "Buzz"
         | isDivisible n 7 = Left "Bizz"
         | containsThree n = Left "Fizz"
+        | isPrime n = Left "Pizz"
+

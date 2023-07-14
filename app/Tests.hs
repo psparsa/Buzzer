@@ -82,6 +82,13 @@ testWithABigNumber = TestCase $ do
         Right _  -> assertFailure wrongTypeMsg
         Left msg -> assertEqual "Tests a big number divisible by 3" "Fizz" msg
 
+testAPrimeNumber :: Test
+testAPrimeNumber = TestCase $ do
+    let result = buzzer 11
+    case result of
+        Right _  -> assertFailure wrongTypeMsg
+        Left msg -> assertEqual
+            "Tests a prime number which isn't divisible by 3, 5, 7, 15, 21, 35 and 105 and also doesn't have digit 3" "Pizz" msg
 
 buzzerTests :: Test
 buzzerTests = TestList [
@@ -94,7 +101,8 @@ buzzerTests = TestList [
     testThirtyFive,
     testOneHundredFiveThirtyFive,
     testANumberWithDigitThree,
-    testWithABigNumber
+    testWithABigNumber,
+    testAPrimeNumber
     ]
 
 main :: IO ()
