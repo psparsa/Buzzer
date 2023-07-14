@@ -1,4 +1,4 @@
-module Buzzer where
+module Buzzer (buzzer) where
     isDivisible :: Integral a => a -> a -> Bool
     isDivisible number divisor = mod number divisor == 0
 
